@@ -7,7 +7,7 @@ This 3D Renderer is designed for academic use, to show different perspective mod
 ### Dependencies
 The project uses CMake to compile/build. It also uses SDL3, but it's bundled within the project (keep this in mind if you plan to move the SDL3 folder's location).
 
-Once downloaded (either via ZIP file or cloning), the project must be compiled and built. We strongly recommend not compiling/building in the same directory, but rather adding a build/ folder.
+Once downloaded (either via ZIP file or cloning), the project must be compiled and built. We strongly recommend not compiling/building in the base directory, but rather adding a build/ folder.
 
 ### Compiling
 To compile (assuming you are in `${PATH_TO_PROJECT}/build/`):
