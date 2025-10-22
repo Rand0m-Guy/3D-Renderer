@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/3DRenderer.dir/main.cpp.o CMakeFiles/3DRenderer.dir/ui/SDLWindow.cpp.o -o 3DRenderer  -Wl,-rpath,/home/randomguy/Desktop/Escuela/Servicio/Renderer/build libSDL3.so.0.3.0 

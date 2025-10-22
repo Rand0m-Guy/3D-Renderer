@@ -1,0 +1,8 @@
+/home/randomguy/Desktop/Escuela/Servicio/Renderer/build/CMakeFiles/3DRenderer.dir
+/home/randomguy/Desktop/Escuela/Servicio/Renderer/build/CMakeFiles/edit_cache.dir
+/home/randomguy/Desktop/Escuela/Servicio/Renderer/build/CMakeFiles/rebuild_cache.dir
+/home/randomguy/Desktop/Escuela/Servicio/Renderer/build/sdl3/vendored/SDL/CMakeFiles/SDL3-shared.dir
+/home/randomguy/Desktop/Escuela/Servicio/Renderer/build/sdl3/vendored/SDL/CMakeFiles/SDL3_test.dir
+/home/randomguy/Desktop/Escuela/Servicio/Renderer/build/sdl3/vendored/SDL/CMakeFiles/SDL_uclibc.dir
+/home/randomguy/Desktop/Escuela/Servicio/Renderer/build/sdl3/vendored/SDL/CMakeFiles/edit_cache.dir
+/home/randomguy/Desktop/Escuela/Servicio/Renderer/build/sdl3/vendored/SDL/CMakeFiles/rebuild_cache.dir

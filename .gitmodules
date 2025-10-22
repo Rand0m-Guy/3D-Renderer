@@ -1,0 +1,3 @@
+[submodule "sdl3/vendored/SDL"]
+	path = sdl3/vendored/SDL
+	url = https://github.com/libsdl-org/SDL.git

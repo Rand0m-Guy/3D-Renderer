@@ -1,0 +1,7 @@
+sdl3/vendored/SDL/CMakeFiles/SDL3-shared.dir/src/SDL_log.c.o: \
+ /home/randomguy/Desktop/Escuela/Servicio/Renderer/sdl3/vendored/SDL/src/SDL_log.c \
+ /usr/include/stdc-predef.h \
+ /home/randomguy/Desktop/Escuela/Servicio/Renderer/sdl3/vendored/SDL/src/SDL_internal.h \
+ /home/randomguy/Desktop/Escuela/Servicio/Renderer/sdl3/vendored/SDL/src/SDL_log_c.h \
+ /usr/include/stdio.h \
+ /home/randomguy/Desktop/Escuela/Servicio/Renderer/sdl3/vendored/SDL/src/stdlib/SDL_vacopy.h
