@@ -1,13 +1,13 @@
-#include "ui/SDLWindow.h"
+#include "ui/sdl_window.h"
+#include "core/renderer/renderer.h"
 #include <iostream>
 
 int main(int argc, char* argv[]) {
-    
     try {
         int width = 640;
         int height = 480;
         SDLWindow window(width, height);
-
+        Renderer renderer(window);
         while (window.isRunning()) {
             SDL_Event event;
 
@@ -18,7 +18,9 @@ int main(int argc, char* argv[]) {
             }
         }
     } catch(const std::bad_alloc& e) {
-        std::cout<<"[ERR] BAD MEMORY ALLOCATION\n";
+        std::cerr<<"BAD MEMORY ALLOCATION\n";
+    } catch(...) {
+        std::cerr<<"UNKNOWN ERROR\n";
     }
     return 0;
 }

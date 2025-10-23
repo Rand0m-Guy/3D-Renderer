@@ -1,6 +1,6 @@
-#include "SDLWindow.h"
-#include <string>
-#include <iostream>
+#include "sdl_window.h"
+#include <new>
+#include <cstdlib>
 
 SDLWindow::SDLWindow(int width, int height) {
     SDL_Init(SDL_INIT_VIDEO); // Initializes SDL3
@@ -17,7 +17,6 @@ SDLWindow::SDLWindow(int width, int height) {
     if (window == NULL) { // If window was not created
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
         throw std::bad_alloc();
-        exit(1);
     }
 
     this->running = true;
@@ -34,4 +33,8 @@ bool SDLWindow::isRunning() {
 
 void SDLWindow::Quit() {
     this->running = false;
+}
+
+SDL_PropertiesID SDLWindow::getWindowProperties() {
+    return SDL_GetWindowProperties(this->window);
 }
