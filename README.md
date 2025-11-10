@@ -10,12 +10,12 @@ The project uses CMake to compile/build. It also uses SDL3, but it's bundled wit
 Once downloaded (either via ZIP file or cloning), the project must be compiled and built. We strongly recommend not compiling/building in the base directory, but rather adding a build/ folder.
 
 ### Compiling
-To compile (assuming you are in `${PATH_TO_PROJECT}/build/`):
+To compile (assuming you are in `${PATH_TO_PROJECT}/build`):
 ```
 cmake ..
 ```
 ### Building
-To build the project (assuming you are in `${PATH_TO_PROJECT}/build/`):
+To build the project (assuming you are in `${PATH_TO_PROJECT}/build`):
 ```
 cmake --build .
 ```

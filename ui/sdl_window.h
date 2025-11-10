@@ -3,7 +3,6 @@
 
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
-#include <memory>
 
 class SDLWindow {
     private:
@@ -18,6 +17,8 @@ class SDLWindow {
         ~SDLWindow();
         bool isRunning();
         void Quit();
+        SDL_PropertiesID getWindowProperties();
+        SDL_Window* getWindow();
 };
 
 #endif //SDL_WINDOW_H
