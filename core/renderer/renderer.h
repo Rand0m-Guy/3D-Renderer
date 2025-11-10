@@ -2,14 +2,19 @@
 #define RENDERER_H
 
 #include "../../ui/sdl_window.h"
+#include "../matrix/matrix2di.h"
+#include "../color/color.h"
 
 class Renderer {
     private:
-        SDL_PropertiesID windowProperties;
+        SDLWindow window;
+        SDL_Surface *surface;
+        Matrix2Di surfaceBuffer;
 
     public:
         Renderer(SDLWindow&);
-        // ~Renderer();
+        ~Renderer();
+        void ClearSurface(Color);
 };
 
 #endif // RENDERER_H

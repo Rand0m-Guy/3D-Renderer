@@ -8,6 +8,8 @@ int main(int argc, char* argv[]) {
         int height = 480;
         SDLWindow window(width, height);
         Renderer renderer(window);
+        Color BACKGROUND_COLOR("#FF00FF");
+        renderer.ClearSurface(BACKGROUND_COLOR);
         while (window.isRunning()) {
             SDL_Event event;
 
@@ -18,9 +20,9 @@ int main(int argc, char* argv[]) {
             }
         }
     } catch(const std::bad_alloc& e) {
-        std::cerr<<"BAD MEMORY ALLOCATION\n";
+        std::cerr<<"BAD MEMORY ALLOCATION"<<std::endl;
     } catch(...) {
-        std::cerr<<"UNKNOWN ERROR\n";
+        std::cerr<<"UNKNOWN ERROR"<<std::endl;
     }
     return 0;
 }

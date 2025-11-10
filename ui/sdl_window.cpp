@@ -35,6 +35,6 @@ void SDLWindow::Quit() {
     this->running = false;
 }
 
-SDL_PropertiesID SDLWindow::getWindowProperties() {
-    return SDL_GetWindowProperties(this->window);
+SDL_Window* SDLWindow::getWindow() {
+    return this->window;
 }

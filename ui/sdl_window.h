@@ -18,6 +18,7 @@ class SDLWindow {
         bool isRunning();
         void Quit();
         SDL_PropertiesID getWindowProperties();
+        SDL_Window* getWindow();
 };
 
 #endif //SDL_WINDOW_H

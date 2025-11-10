@@ -1,18 +1,28 @@
 #include "renderer.h"
-#include <stdexcept>
-#include <SDL3/SDL_properties.h>
+#include <SDL3/SDL_surface.h>
 #include <iostream>
 
-Renderer::Renderer(SDLWindow& window) {
-    this->windowProperties = window.getWindowProperties();
+Renderer::Renderer(SDLWindow& win) :    window(win),
+                                        surface(SDL_GetWindowSurface(win.getWindow())),
+                                        surfaceBuffer(surface->w, surface->h)
+{}
 
-    if(this->windowProperties == 0) {
-        throw std::runtime_error("Couldn't access SDL_Window properties");
+Renderer::~Renderer() {
+    SDL_DestroySurface(this->surface);
+}
+
+void Renderer::ClearSurface(Color c) {
+    if(!SDL_LockSurface(surface)) {
+        std::cerr<<"Surface couldn't be locked"<<std::endl;
     }
 
-    #ifdef linux
-        // Linux (X11)
-        Window xwindow = SDL_GetPointerProperty(this->windowProperties, SDL_PROP_WINDOW_X11_WINDOW_NUMBER, NULL);
+    if(!SDL_ClearSurface(surface, c.getAsFloat_r(), c.getAsFloat_g(), c.getAsFloat_b(), c.getAsFloat_a())) {
+        std::cerr<<"Surface couldn't be cleared"<<std::endl;
+    }
 
-    #endif
+    SDL_UnlockSurface(surface);
+    
+    if(!SDL_UpdateWindowSurface(window.getWindow())) {
+        std::cerr<<"Surface couldn't be updated"<<std::endl;
+    }
 }
