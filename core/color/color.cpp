@@ -81,9 +81,70 @@ std::vector<int> Color::getAsRGBA() {
     return {this->r, this->g, this->b, this->a};
 }
 
-// std::vector<int> Color::getAsHSVA() {}
+std::vector<int> Color::getAsHSVA() {
+    float rP = (float)(this->r) / 255.0f;
+    float gP = (float)(this->g) / 255.0f;
+    float bP = (float)(this->b) / 255.0f;
 
-// std::vector<int> Color::getAsHSLA() {}
+    float Cmax = std::max(rP, std::max(gP, bP));
+    float Cmin = std::min(rP, std::min(gP, bP));
+
+    float Delta = Cmax - Cmin;
+    float epsilon = 0.00000000001;
+    int H, S, V;
+    if(Delta < epsilon) H = 0;
+    else if(Cmax == rP) {
+        H = 60 * ((int)((gP - bP) / Delta) % 6);
+    } else if(Cmax == gP) {
+        H = 60 * (int)(((bP - rP) / Delta) + 2.0f);
+    } else {
+        H = 60 * (int)(((rP - gP) / Delta) + 4.0f);
+    }
+
+    if(Cmax < epsilon) {
+        S = 0;
+    } else {
+        S = (int)(Delta / Cmax * 100.0f);
+    }
+
+    V = (int)(Cmax * 100.0f);
+
+    return {H, S, V, this->a};
+}
+
+std::vector<int> Color::getAsHSLA() {
+    float rP = (float)(this->r) / 255.0f;
+    float gP = (float)(this->g) / 255.0f;
+    float bP = (float)(this->b) / 255.0f;
+
+    float Cmax = std::max(rP, std::max(gP, bP));
+    float Cmin = std::min(rP, std::min(gP, bP));
+
+    float Delta = Cmax - Cmin;
+    float epsilon = 0.00000000001;
+    int H, S, L;
+    if(Delta < epsilon) H = 0;
+    else if(Cmax == rP) {
+        H = 60 * ((int)((gP - bP) / Delta) % 6);
+    } else if(Cmax == gP) {
+        H = 60 * (int)(((bP - rP) / Delta) + 2.0f);
+    } else {
+        H = 60 * (int)(((rP - gP) / Delta) + 4.0f);
+    }
+
+    float fL = ((Cmax + Cmin) / 2.0f); 
+
+    if(Cmax < epsilon) {
+        S = 0;
+    } else {
+        S = (int)((Delta / (1.0f - fabs(2.0f * fL - 1.0f))) * 100.0f);
+        S = std::max(S, 0);
+    }
+
+    L = (int)(fL * 100.0f);
+
+    return {H, S, L, this->a};
+}
 
 std::string Color::getAsHex() {
     std::string hexColor = "#00000000";

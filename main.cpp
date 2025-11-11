@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
         int height = 480;
         SDLWindow window(width, height);
         Renderer renderer(window);
-        Color BACKGROUND_COLOR(ColorModel::RGB, 255, 255, 0);
+        Color BACKGROUND_COLOR(ColorModel::RGB, 20, 20, 20);
         renderer.ClearSurface(BACKGROUND_COLOR);
         while (window.isRunning()) {
             SDL_Event event;
