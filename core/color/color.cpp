@@ -2,11 +2,49 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
+#include <cmath>
 
-Color::Color(int v1, int v2, int v3, int alpha) {
-    this->r = (uint8_t)std::clamp(v1, 0, 255);
-    this->g = (uint8_t)std::clamp(v2, 0, 255);
-    this->b = (uint8_t)std::clamp(v3, 0, 255);
+Color::Color(ColorModel cm, int v1, int v2, int v3, int alpha) {
+    if(cm == RGB) {
+        this->r = (uint8_t)std::clamp(v1, 0, 255);
+        this->g = (uint8_t)std::clamp(v2, 0, 255);
+        this->b = (uint8_t)std::clamp(v3, 0, 255);
+        this->a = (uint8_t)std::clamp(alpha, 0, 255);
+        return;
+    }
+    
+    float C, m, rP, gP, bP;
+
+    float s = (float)std::clamp(v2, 0, 100) / 100.0f;
+    float lastValue = (float)std::clamp(v3, 0, 100) / 100.0f;
+    
+    if(cm == HSV) { // HSV to RGB conversion
+        C = s * lastValue;
+        m = lastValue - C;
+    } else if(cm == HSL) {
+        C = (1 - fabs(2 * lastValue - 1)) * s;
+        m = lastValue - C/2;
+    }
+
+    float X = C * (float)(1 - fabs((v1 / 60) % 2 - 1));
+    
+    if(v1 >= 0 && v1 < 60) {
+        rP = C; gP = X; bP = 0;
+    } else if(v1 >= 60 && v1 < 120) {
+        rP = X; gP = C; bP = 0;
+    } else if(v1 >= 120 && v1 < 180) {
+        rP = 0; gP = C; bP = X;
+    } else if(v1 >= 180 && v1 < 240) {
+        rP = 0; gP = X; bP = C;
+    } else if(v1 >= 240 && v1 < 300) {
+        rP = X; gP = 0; bP = C;
+    } else {
+        rP = C; gP = 0; bP = X;
+    }
+
+    this->r = (uint8_t)((rP + m) * 255);
+    this->g = (uint8_t)((gP + m) * 255);
+    this->b = (uint8_t)((bP + m) * 255);
     this->a = (uint8_t)std::clamp(alpha, 0, 255);
 }
 
@@ -37,6 +75,28 @@ Color::Color(std::string hex) {
         int aL = (hex[8] - '0' > 9) ? hex[8] - 'A' + 10 : hex[8] - '0';
         this->a = (uint8_t)(rL + 16 * ((hex[7] - '0' > 9) ? hex[7] - 'A' + 10 : hex[7] - '0'));
     }
+}
+
+std::vector<int> Color::getAsRGBA() {
+    return {this->r, this->g, this->b, this->a};
+}
+
+// std::vector<int> Color::getAsHSVA() {}
+
+// std::vector<int> Color::getAsHSLA() {}
+
+std::string Color::getAsHex() {
+    std::string hexColor = "#00000000";
+    hexColor[1] = (this->r / 16 >= 10) ? (this->r / 16) - 10 + 'A' : (this->r / 16) + '0';
+    hexColor[2] = (this->r % 16 >= 10) ? (this->r % 16) - 10 + 'A' : (this->r % 16) + '0';
+    hexColor[3] = (this->g / 16 >= 10) ? (this->g / 16) - 10 + 'A' : (this->g / 16) + '0';
+    hexColor[4] = (this->g % 16 >= 10) ? (this->g % 16) - 10 + 'A' : (this->g % 16) + '0';
+    hexColor[5] = (this->b / 16 >= 10) ? (this->b / 16) - 10 + 'A' : (this->b / 16) + '0';
+    hexColor[6] = (this->b % 16 >= 10) ? (this->b % 16) - 10 + 'A' : (this->b % 16) + '0';
+    hexColor[7] = (this->a / 16 >= 10) ? (this->a / 16) - 10 + 'A' : (this->a / 16) + '0';
+    hexColor[8] = (this->a % 16 >= 10) ? (this->a % 16) - 10 + 'A' : (this->a % 16) + '0';
+
+    return hexColor;
 }
 
 float Color::getAsFloat_r() {

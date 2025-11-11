@@ -1,6 +1,7 @@
 #include "ui/sdl_window.h"
 #include "core/renderer/renderer.h"
 #include <iostream>
+#include <vector>
 
 int main(int argc, char* argv[]) {
     try {
@@ -8,7 +9,7 @@ int main(int argc, char* argv[]) {
         int height = 480;
         SDLWindow window(width, height);
         Renderer renderer(window);
-        Color BACKGROUND_COLOR("#FF00FF");
+        Color BACKGROUND_COLOR(ColorModel::RGB, 255, 255, 0);
         renderer.ClearSurface(BACKGROUND_COLOR);
         while (window.isRunning()) {
             SDL_Event event;

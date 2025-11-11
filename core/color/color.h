@@ -6,7 +6,6 @@
 #include <vector>
 #include "color_models.h"
 
-
 class Color {
     public:
         uint8_t r;
@@ -14,7 +13,7 @@ class Color {
         uint8_t b;
         uint8_t a;
 
-        Color(int v1, int v2, int v3, int alpha = 255);
+        Color(ColorModel, int v1, int v2, int v3, int alpha = 255);
         Color(std::string);
         std::vector<int> getAsRGBA();
         std::vector<int> getAsHSVA();
