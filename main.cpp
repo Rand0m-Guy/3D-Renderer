@@ -11,6 +11,8 @@ int main(int argc, char* argv[]) {
         Renderer renderer(window);
         Color BACKGROUND_COLOR(ColorModel::RGB, 20, 20, 20);
         renderer.ClearSurface(BACKGROUND_COLOR);
+        vec2i_t p;
+        renderer.DrawPoint(p);
         while (window.isRunning()) {
             SDL_Event event;
 
