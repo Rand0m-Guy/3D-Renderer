@@ -13,6 +13,7 @@ int main(int argc, char* argv[]) {
         renderer.ClearSurface(BACKGROUND_COLOR);
         vec2i_t p;
         renderer.DrawPoint(p);
+        renderer.DrawNewSurface();
         while (window.isRunning()) {
             SDL_Event event;
 

@@ -4,6 +4,8 @@
 #include <string>
 #include <cmath>
 
+Color::Color() : r(0), g(0), b(0), a(255) {}
+
 Color::Color(ColorModel cm, int v1, int v2, int v3, int alpha) {
     if(cm == RGB) {
         this->r = (uint8_t)std::clamp(v1, 0, 255);
