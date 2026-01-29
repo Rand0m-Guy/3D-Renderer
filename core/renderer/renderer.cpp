@@ -8,9 +8,6 @@ Renderer::Renderer(SDLWindow& win) :    window(win),
                                         h(surface->h)
 {
     surfaceData.resize(w * h);
-    for(size_t i = 0; i < w * h; i++) {
-        surfaceData[i] = i;
-    }
 }
 
 Renderer::~Renderer() {
@@ -26,21 +23,7 @@ void Renderer::ClearSurface(Color c) {
         std::cerr<<"Surface couldn't be cleared"<<std::endl;
     }
 
-    SDL_UnlockSurface(surface);
-    
-    if(!SDL_UpdateWindowSurface(window.getWindow())) {
-        std::cerr<<"Surface couldn't be updated"<<std::endl;
-    }
-}
-
-void Renderer::DrawPoint(vec2i_t point) {
-    if(!SDL_LockSurface(surface)) {
-        std::cerr<<"Surface couldn't be locked"<<std::endl;
-    }
-
-    if(!SDL_WriteSurfacePixel(surface, 30, 30, (Uint8)255, (Uint8)255, (Uint8)255, (Uint8)255)) {
-        std::cerr<<"Surface couldn't be drawn to"<<std::endl;
-    }
+    std::fill(surfaceData.begin(), surfaceData.end(), c);
 
     SDL_UnlockSurface(surface);
     
@@ -62,4 +45,8 @@ void Renderer::DrawNewSurface() {
     if(!SDL_UpdateWindowSurface(window.getWindow())) {
         std::cerr<<"Surface couldn't be updated"<<std::endl;
     }
+}
+
+void Renderer::SetPointInfo(vec2i_t position) {
+    surfaceData[(position.y * w + position.x) % (w * h)] = Color(ColorModel::RGB, 255, 255, 255);
 }

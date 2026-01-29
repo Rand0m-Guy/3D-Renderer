@@ -1,5 +1,6 @@
 #include "ui/sdl_window.h"
 #include "core/renderer/renderer.h"
+#include "core/projection/perspective.h"
 #include <iostream>
 #include <vector>
 
@@ -11,11 +12,19 @@ int main(int argc, char* argv[]) {
         Renderer renderer(window);
         Color BACKGROUND_COLOR(ColorModel::RGB, 20, 20, 20);
         renderer.ClearSurface(BACKGROUND_COLOR);
-        vec2i_t p;
-        renderer.DrawPoint(p);
-        renderer.DrawNewSurface();
+        Perspective perspective;
+        vec3_t point = {.x = 10.0f, .y = 10.0f, .z = 10.0f};
+        float idx = 0.0f;
+
         while (window.isRunning()) {
             SDL_Event event;
+            
+            point = {.x = idx, .y = idx, .z = idx};
+            idx += .05f;
+            std::cout<<"point: "<<point.x<<", "<<point.y<<", "<<point.z<<std::endl;
+
+            renderer.SetPointInfo(perspective.project(point));
+            renderer.DrawNewSurface();
 
             while (SDL_PollEvent(&event)) {
                 if (event.type == SDL_EVENT_QUIT) {

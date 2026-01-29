@@ -14,14 +14,14 @@ class Renderer {
         SDL_Surface *surface;
         unsigned int w;
         unsigned int h;
-        std::vector<uint32_t> surfaceData;
+        std::vector<Color> surfaceData;
 
     public:
         Renderer(SDLWindow&);
         ~Renderer();
         void ClearSurface(Color);
-        void DrawPoint(vec2i_t);
         void DrawNewSurface();
+        void SetPointInfo(vec2i_t);
 };
 
 #endif // RENDERER_H

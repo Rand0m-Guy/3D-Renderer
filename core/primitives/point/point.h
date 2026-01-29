@@ -7,11 +7,14 @@
 class Point {
     private:
         vec3_t position;
-        Color color;
-        int size;
 
     public:
-        Point(vec3_t, Color, int);
+        Point(vec3_t);
+        void setPoint(vec3_t);
+        float getX();
+        float getY();
+        float getZ();
+        vec3_t getPosition();
 };
 
 #endif
