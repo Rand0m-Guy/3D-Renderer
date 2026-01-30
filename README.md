@@ -14,6 +14,13 @@ To compile (assuming you are in `${PATH_TO_PROJECT}/build`):
 ```
 cmake ..
 ```
+
+If you did not move the SDL3 folder, you can use
+```
+git submodule update --init --recursive
+```
+to add SDL3 from the project itself. All dependencies of SDL3 (OS-dependant) won't be included with this command.
+
 ### Building
 To build the project (assuming you are in `${PATH_TO_PROJECT}/build`):
 ```

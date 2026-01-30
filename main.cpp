@@ -19,12 +19,13 @@ int main(int argc, char* argv[]) {
         while (window.isRunning()) {
             SDL_Event event;
             
-            point = {.x = idx, .y = idx, .z = idx};
+            point = {.x = idx, .y = idx, .z = 1.0f};
             idx += .05f;
-            std::cout<<"point: "<<point.x<<", "<<point.y<<", "<<point.z<<std::endl;
 
-            renderer.SetPointInfo(perspective.project(point));
+            renderer.SetPointInfo(perspective.project(point), Color(ColorModel::RGB, 255, 255, 255));
             renderer.DrawNewSurface();
+
+            renderer.SetPointInfo(perspective.project(point), BACKGROUND_COLOR);
 
             while (SDL_PollEvent(&event)) {
                 if (event.type == SDL_EVENT_QUIT) {

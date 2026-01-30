@@ -21,7 +21,7 @@ class Renderer {
         ~Renderer();
         void ClearSurface(Color);
         void DrawNewSurface();
-        void SetPointInfo(vec2i_t);
+        void SetPointInfo(vec2i_t, Color);
 };
 
 #endif // RENDERER_H

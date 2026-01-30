@@ -22,7 +22,7 @@ void Renderer::ClearSurface(Color c) {
     if(!SDL_ClearSurface(surface, c.getAsFloat_r(), c.getAsFloat_g(), c.getAsFloat_b(), c.getAsFloat_a())) {
         std::cerr<<"Surface couldn't be cleared"<<std::endl;
     }
-
+    
     std::fill(surfaceData.begin(), surfaceData.end(), c);
 
     SDL_UnlockSurface(surface);
@@ -47,6 +47,6 @@ void Renderer::DrawNewSurface() {
     }
 }
 
-void Renderer::SetPointInfo(vec2i_t position) {
-    surfaceData[(position.y * w + position.x) % (w * h)] = Color(ColorModel::RGB, 255, 255, 255);
+void Renderer::SetPointInfo(vec2i_t position, Color pointColor) {
+    surfaceData[(position.y * w + position.x) % (w * h)] = pointColor;
 }
